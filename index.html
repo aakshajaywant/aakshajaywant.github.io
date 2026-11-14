@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aaksha Jaywant — Embedded Software &amp; Hardware Test Automation</title>
+<meta name="description" content="Portfolio of Aaksha Jaywant, embedded software engineer: hardware test automation, DUT verification, and edge-AI validation on Jetson Orin Nano and Arduino UNO Q.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0f0e; --panel:#111816; --panel2:#0e1412; --line:#1f2b27;
+    --ink:#e4ece8; --dim:#8fa39b; --faint:#5b6e67;
+    --trace:#3ef0a0; --amber:#ffb547; --cyan:#57c7ff;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+    --sans:"IBM Plex Sans",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;font-size:17px;
+    background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:48px 48px;background-attachment:fixed}
+  body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse at 50% 0%,transparent 0%,var(--bg) 70%);pointer-events:none;z-index:-1}
+  a{color:var(--trace);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:10;background:rgba(11,15,14,.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .logo{font-family:var(--mono);font-weight:600;color:var(--ink);font-size:15px;letter-spacing:.02em}
+  .logo span{color:var(--trace)}
+  nav ul{display:flex;gap:28px;list-style:none;font-family:var(--mono);font-size:13px}
+  nav ul a{color:var(--dim)}
+  nav ul a:hover{color:var(--trace);text-decoration:none}
+  @media(max-width:700px){nav ul{display:none}}
+
+  /* hero */
+  .hero{padding:96px 0 72px}
+  .tag{font-family:var(--mono);font-size:13px;color:var(--trace);letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+  .tag::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--trace);box-shadow:0 0 10px var(--trace);animation:blink 2s infinite}
+  @keyframes blink{50%{opacity:.25}}
+  h1{font-size:clamp(36px,5.6vw,62px);line-height:1.08;font-weight:700;letter-spacing:-.02em;margin:22px 0 22px;max-width:16ch}
+  h1 em{font-style:normal;color:var(--trace)}
+  .lede{color:var(--dim);font-size:19px;max-width:60ch}
+  .cta{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+  .btn{font-family:var(--mono);font-size:14px;padding:12px 20px;border:1px solid var(--trace);color:var(--trace);border-radius:4px;transition:.15s}
+  .btn:hover{background:var(--trace);color:var(--bg);text-decoration:none}
+  .btn.ghost{border-color:var(--line);color:var(--dim)}
+  .btn.ghost:hover{border-color:var(--dim);background:transparent;color:var(--ink)}
+
+  .scope{margin-top:56px;border:1px solid var(--line);background:var(--panel2);border-radius:6px;overflow:hidden}
+  .scope-head{display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;color:var(--faint);padding:10px 16px;border-bottom:1px solid var(--line)}
+  .scope svg{display:block;width:100%;height:120px}
+  .scope path{fill:none;stroke:var(--trace);stroke-width:2;filter:drop-shadow(0 0 4px rgba(62,240,160,.6));
+    stroke-dasharray:2400;stroke-dashoffset:2400;animation:draw 3.2s ease-out forwards}
+  @keyframes draw{to{stroke-dashoffset:0}}
+
+  /* sections */
+  section{padding:80px 0;border-top:1px solid var(--line)}
+  .sec-label{font-family:var(--mono);font-size:13px;color:var(--faint);margin-bottom:10px}
+  .sec-label b{color:var(--trace);font-weight:500}
+  h2{font-size:clamp(28px,3.6vw,38px);letter-spacing:-.01em;margin-bottom:18px}
+  .intro{color:var(--dim);max-width:65ch;margin-bottom:44px}
+
+  /* projects */
+  .project{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:34px;margin-bottom:28px}
+  .proj-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:14px}
+  .project h3{font-size:24px;letter-spacing:-.01em}
+  .status{font-family:var(--mono);font-size:12px;padding:4px 10px;border-radius:20px;border:1px solid var(--amber);color:var(--amber);white-space:nowrap}
+  .status.green{border-color:var(--trace);color:var(--trace)}
+  .project p{color:var(--dim);max-width:70ch}
+  .project p+p{margin-top:12px}
+  .project strong{color:var(--ink);font-weight:600}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+  .chip{font-family:var(--mono);font-size:12px;padding:5px 10px;background:var(--panel2);border:1px solid var(--line);border-radius:4px;color:var(--dim)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:26px}
+  @media(max-width:820px){.grid2{grid-template-columns:1fr}}
+  .figure{background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:18px}
+  .figure .cap{font-family:var(--mono);font-size:11px;color:var(--faint);margin-bottom:12px;text-transform:uppercase;letter-spacing:.08em}
+  pre{font-family:var(--mono);font-size:13px;line-height:1.65;color:var(--ink);overflow-x:auto}
+  .k{color:var(--cyan)} .f{color:var(--trace)} .c{color:var(--faint)} .s{color:var(--amber)}
+  ul.points{list-style:none;margin-top:16px}
+  ul.points li{padding-left:22px;position:relative;color:var(--dim);margin-bottom:8px}
+  ul.points li::before{content:"▸";position:absolute;left:0;color:var(--trace)}
+
+  .channels{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:22px}
+  .ch{background:var(--panel2);border:1px solid var(--line);border-radius:4px;padding:12px;font-family:var(--mono);font-size:12.5px;color:var(--dim)}
+  .ch b{display:block;color:var(--trace);font-weight:500;font-size:11px;margin-bottom:4px}
+
+  /* skills */
+  .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+  .skill{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:24px}
+  .skill h4{font-family:var(--mono);font-size:13px;color:var(--trace);font-weight:500;margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em}
+  .skill p{color:var(--dim);font-size:15px}
+
+  /* about */
+  .about{display:grid;grid-template-columns:1.4fr 1fr;gap:48px}
+  @media(max-width:820px){.about{grid-template-columns:1fr}}
+  .about p{color:var(--dim);margin-bottom:16px}
+  .stat{border-left:2px solid var(--trace);padding:4px 0 4px 18px;margin-bottom:22px}
+  .stat b{display:block;font-size:30px;font-weight:700;color:var(--ink);line-height:1.2}
+  .stat span{font-family:var(--mono);font-size:12.5px;color:var(--faint)}
+
+  /* contact */
+  .contact{text-align:center;padding:96px 0}
+  .contact h2{margin-bottom:14px}
+  .contact p{color:var(--dim);max-width:52ch;margin:0 auto 32px}
+  .contact .cta{justify-content:center}
+  footer{border-top:1px solid var(--line);padding:28px 0;font-family:var(--mono);font-size:12px;color:var(--faint)}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#top">aaksha<span>.</span>jaywant</a>
+    <ul>
+      <li><a href="#work">work</a></li>
+      <li><a href="#skills">skills</a></li>
+      <li><a href="#about">about</a></li>
+      <li><a href="#contact">contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="tag">Embedded software · Hardware test automation</div>
+    <h1>I build rigs that tell you <em>whether the hardware works</em>.</h1>
+    <p class="lede">I'm an embedded software engineer at Micron Technology. On my own time I build test benches, driver abstraction layers and measurement pipelines for embedded devices, from Jetson-controlled automation to on-device AI validation on the Arduino UNO&nbsp;Q.</p>
+    <div class="cta">
+      <a class="btn" href="#work">See the projects →</a>
+      <a class="btn ghost" href="https://github.com/aakshajaywant">GitHub</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/aakshajaywant/">LinkedIn</a>
+    </div>
+
+    <div class="scope" aria-hidden="true">
+      <div class="scope-head"><span>CH1 · DUT supply current</span><span>500 µs/div · TRIG ↑</span></div>
+      <svg viewBox="0 0 1000 120" preserveAspectRatio="none">
+        <path d="M0,90 L120,90 L128,30 L180,30 L186,90 L260,90 C270,90 275,60 285,60 L340,60 L346,90 L420,90 L426,22 L436,22 L440,90 L470,90 L476,22 L486,22 L490,90 L520,90 L526,22 L536,22 L540,90 L620,90 C640,90 650,70 670,70 L760,70 L766,90 L840,90 L846,30 L900,30 L906,90 L1000,90"/>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<main>
+<section id="work">
+  <div class="wrap">
+    <div class="sec-label"><b>01</b> / selected work</div>
+    <h2>Projects</h2>
+    <p class="intro">Three connected builds around one question: how do you verify an embedded device automatically and repeatably, including when it can't tell you anything about itself?</p>
+
+    <!-- Project 1 -->
+    <article class="project">
+      <div class="proj-top">
+        <h3>Jetson × UNO Q Automated Test Bench</h3>
+        <span class="status">In progress</span>
+      </div>
+      <p>A small version of a production wireless-system test station. An <strong>NVIDIA Jetson Orin Nano</strong> acts as the test-automation controller and drives an <strong>Arduino UNO&nbsp;Q</strong> as the device under test. Instruments sit behind a common driver interface, results go to a database, and every change runs through CI.</p>
+      <p>The core is the <strong>equipment driver abstraction layer</strong>. Test cases are written against an interface, not an instrument, so you can swap an SDR, a power supply or a meter without rewriting tests.</p>
+
+      <div class="grid2">
+        <div class="figure">
+          <div class="cap">Driver interface (Python ABC)</div>
+<pre><span class="k">class</span> <span class="f">Instrument</span>(ABC):
+    <span class="c">"""Every bench instrument looks the same to a test."""</span>
+    <span class="k">@abstractmethod</span>
+    <span class="k">def</span> <span class="f">connect</span>(self) -> <span class="k">None</span>: ...
+    <span class="k">@abstractmethod</span>
+    <span class="k">def</span> <span class="f">configure</span>(self, **cfg) -> <span class="k">None</span>: ...
+    <span class="k">@abstractmethod</span>
+    <span class="k">def</span> <span class="f">measure</span>(self) -> Measurement: ...
+    <span class="k">@abstractmethod</span>
+    <span class="k">def</span> <span class="f">reset</span>(self) -> <span class="k">None</span>: ...
+
+<span class="k">class</span> <span class="f">SdrReceiver</span>(Instrument): ...
+<span class="k">class</span> <span class="f">BenchSupply</span>(Instrument): ...</pre>
+        </div>
+        <div class="figure">
+          <div class="cap">Bench architecture</div>
+          <svg viewBox="0 0 400 250" width="100%" role="img" aria-label="Architecture: CI triggers pytest on the Jetson controller, which drives instruments through the driver layer, exercises the UNO Q DUT and stores results">
+            <style>.b{fill:#0b0f0e;stroke:#1f2b27;stroke-width:1.5}.hb{fill:#0b0f0e;stroke:#3ef0a0;stroke-width:1.5}.t{fill:#e4ece8;font:500 12px 'IBM Plex Mono',monospace}.ts{fill:#8fa39b;font:10.5px 'IBM Plex Mono',monospace}.a{stroke:#5b6e67;stroke-width:1.5;fill:none;marker-end:url(#ar)}</style>
+            <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10z" fill="#5b6e67"/></marker></defs>
+            <rect class="b" x="10" y="10" width="160" height="44" rx="4"/><text class="t" x="22" y="30">GitHub Actions</text><text class="ts" x="22" y="45">CI on every push</text>
+            <rect class="hb" x="10" y="98" width="160" height="56" rx="4"/><text class="t" x="22" y="118">Jetson Orin Nano</text><text class="ts" x="22" y="133">pytest runner</text><text class="ts" x="22" y="146">driver abstraction</text>
+            <rect class="b" x="230" y="10" width="160" height="44" rx="4"/><text class="t" x="242" y="30">Instruments</text><text class="ts" x="242" y="45">SDR · supply · meter</text>
+            <rect class="hb" x="230" y="98" width="160" height="56" rx="4"/><text class="t" x="242" y="118">Arduino UNO Q</text><text class="ts" x="242" y="133">device under test</text><text class="ts" x="242" y="146">MCU + Linux MPU</text>
+            <rect class="b" x="10" y="196" width="160" height="44" rx="4"/><text class="t" x="22" y="216">Results DB</text><text class="ts" x="22" y="231">pass/fail + raw data</text>
+            <path class="a" d="M90,54 L90,96"/>
+            <path class="a" d="M170,112 L228,112"/>
+            <path class="a" d="M170,104 C200,80 210,50 228,38"/>
+            <path class="a" d="M310,54 L310,96"/>
+            <path class="a" d="M90,154 L90,194"/>
+          </svg>
+        </div>
+      </div>
+      <ul class="points">
+        <li>SDR-based RF measurement pipeline for wireless checks</li>
+        <li>pytest test cases with a results database for trend and regression tracking</li>
+        <li>Built in eight phases. The last one is a <strong>validation-gap analysis</strong>: what the bench can't catch yet, and why.</li>
+      </ul>
+      <div class="chips"><span class="chip">Python</span><span class="chip">pytest</span><span class="chip">Jetson Orin Nano</span><span class="chip">Arduino UNO Q</span><span class="chip">SDR</span><span class="chip">GitHub Actions</span><span class="chip">SQL</span></div>
+    </article>
+
+    <!-- Project 2 -->
+    <article class="project">
+      <div class="proj-top">
+        <h3>Zero-Comms DUT Verification Harness</h3>
+        <span class="status">Design study</span>
+      </div>
+      <p>A constraint-inversion exercise: <strong>verify a device that has no communication channels at all</strong>. No UART, no debug port, no telemetry. The harness only observes. It infers device health from the physical side effects the device can't help producing.</p>
+      <div class="channels">
+        <div class="ch"><b>CH·01</b>Power-draw shape over time</div>
+        <div class="ch"><b>CH·02</b>LED / I/O timing patterns</div>
+        <div class="ch"><b>CH·03</b>EM emissions</div>
+        <div class="ch"><b>CH·04</b>Thermal profile</div>
+        <div class="ch"><b>CH·05</b>Acoustic signature</div>
+        <div class="ch"><b>CH·06</b>Visual inspection</div>
+        <div class="ch"><b>CH·07</b>Mechanical stress response</div>
+        <div class="ch"><b>CH·08</b>Event timing via independent sensors</div>
+      </div>
+      <p style="margin-top:20px">This matters for black-box third-party modules, sealed products and legacy hardware where you can't add instrumentation to the firmware.</p>
+      <div class="chips"><span class="chip">Black-box testing</span><span class="chip">Side-channel observation</span><span class="chip">Sensor fusion</span></div>
+    </article>
+
+    <!-- Project 3 -->
+    <article class="project">
+      <div class="proj-top">
+        <h3>Edge-AI Validation on the Arduino UNO Q</h3>
+        <span class="status">Exploration</span>
+      </div>
+      <p>The UNO&nbsp;Q is most useful when real-time MCU control, on-device AI and connectivity work together, not as a generic single-board computer. This work maps how App Lab "bricks" on the Linux/MPU side interact with MCU-side test harness code, and how to validate AI behaviour on the device.</p>
+      <ul class="points">
+        <li>Training in TensorFlow / PyTorch, then optimisation and deployment through <strong>Edge Impulse</strong></li>
+        <li>The <code>.eim</code> model artifact, not raw <code>.tflite</code> or <code>.pt</code>, is what actually gets deployed, so that is what validation has to test</li>
+        <li>Kept separate from the TensorFlow Lite for Microcontrollers path for MCU-only targets</li>
+      </ul>
+      <div class="chips"><span class="chip">Edge Impulse</span><span class="chip">App Lab</span><span class="chip">TFLite Micro</span><span class="chip">Model validation</span></div>
+    </article>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-label"><b>02</b> / capabilities</div>
+    <h2>What I work on</h2>
+    <p class="intro">I write firmware and system software close to the hardware, then build the automation that proves it works.</p>
+    <div class="skills">
+      <div class="skill"><h4>Firmware &amp; RTOS</h4><p>FreeRTOS, ARM SoC bring-up, DMA, low-power design.</p></div>
+      <div class="skill"><h4>Storage &amp; systems</h4><p>NVMe / PCIe, Linux kernel internals, cache hierarchy, IO workload behaviour.</p></div>
+      <div class="skill"><h4>Connectivity &amp; edge AI</h4><p>BLE / Wi-Fi, NPU / AI acceleration, Edge Impulse deployment on the Arduino UNO&nbsp;Q.</p></div>
+      <div class="skill"><h4>Test automation</h4><p>Driver abstraction layers, pytest frameworks, CI for hardware, results databases, validation-gap analysis.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about">
+    <div>
+      <div class="sec-label"><b>03</b> / about</div>
+      <h2>Embedded engineer who builds her own test rigs</h2>
+      <p>At Micron Technology I work on embedded software where firmware meets silicon: storage interfaces, low-level drivers and system behaviour under real workloads.</p>
+      <p>The projects here are where I push further: automated benches that verify hardware without a human in the loop, harnesses that judge a device only by what it physically does, and validation for AI models running on the device itself. I'm interested in roles that combine embedded software, system bring-up and validation.</p>
+    </div>
+    <div style="padding-top:34px">
+      <div class="stat"><b>Micron Technology</b><span>embedded software engineer</span></div>
+      <div class="stat"><b>Firmware → system</b><span>RTOS · Linux kernel · NVMe/PCIe</span></div>
+      <div class="stat"><b>Bench builder</b><span>Jetson · UNO Q · pytest · CI</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="sec-label"><b>04</b> / contact</div>
+    <h2>Let's talk</h2>
+    <p>I'm open to embedded software, firmware and system-validation roles.</p>
+    <div class="cta">
+      <a class="btn" href="mailto:YOUR-EMAIL@example.com">YOUR-EMAIL@example.com</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/aakshajaywant/">LinkedIn</a>
+      <a class="btn ghost" href="https://github.com/aakshajaywant">GitHub</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap"><span>© 2026 Aaksha Jaywant</span><span>static html · hosted free on cloudflare pages</span></div>
+</footer>
+</body>
+</html>
